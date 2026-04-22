@@ -1,6 +1,6 @@
 ---
 name: project-handoff
-description: Update a local project handoff state from Git metadata. Use when Codex is asked to prepare or refresh project handoff artifacts, Windows desktop.ini InfoTip metadata, a wiki onboarding README, estimated work-hours logs from git commit history, a handoff commit, or a post-commit hook that keeps those files current.
+description: Update a local project handoff state from Git metadata. Use when Codex is asked to prepare or refresh project handoff artifacts, Windows desktop.ini InfoTip metadata, a wiki onboarding README, estimated work-hours logs from git commit history, a handoff commit, a post-commit hook that keeps those files current, or batch-install hooks into existing repositories.
 ---
 
 # Project Handoff
@@ -57,6 +57,24 @@ Use `--handoff-message "docs: refresh handoff"` when the user wants a custom com
 Use `scripts/install_git_template.py` when the user asks to install the workflow for every new Git project. It writes a `post-commit` hook into a Git template directory and configures global `init.templateDir`.
 
 The generated hook uses the first line of `.project-handoff-description` as the project description. If the file is missing, it falls back to the project folder name.
+
+## Existing Repositories
+
+Use `scripts/install_existing_repos.py` when the user asks to add Project Handoff to repositories that already exist.
+
+Start with a dry run:
+
+```bash
+python "C:/Users/Wiktor/.codex/skills/project-handoff/scripts/install_existing_repos.py" --root "C:/Users/Wiktor/Projects" --dry-run
+```
+
+Then install without overwriting existing hooks:
+
+```bash
+python "C:/Users/Wiktor/.codex/skills/project-handoff/scripts/install_existing_repos.py" --root "C:/Users/Wiktor/Projects"
+```
+
+Use `--force` only when the user explicitly agrees to overwrite existing `post-commit` hooks.
 
 ## Notes
 
