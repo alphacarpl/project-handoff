@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Handoff"
+  short_description: "Update project handoff files from Git state."
+  default_prompt: "Update this project handoff state: desktop.ini, wiki template, and hours log."
